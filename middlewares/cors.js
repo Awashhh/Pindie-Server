@@ -8,7 +8,7 @@ const cors = (req, res, next) => {
   if (allowedCors.includes(origin)) {
     res.headers('Access-Control-Allow-Origin', origin)
   }
-  next();
+  next()
 };
 
 module.exports = cors;
