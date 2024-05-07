@@ -1,7 +1,7 @@
 const users = require('../models/user');
 
 const findAllUsers = async (req, res, next) => {
-  req.usersArray = await users.find({});
+  req.usersArray = await users.find({}, { password: 0 });
   next();
 }
 
