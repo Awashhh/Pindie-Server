@@ -36,4 +36,21 @@ const gameSchema = new mongoose.Schema({
 		}],
 })
 
+gameSchema.statics.findGameByCategory = function (category) {
+	this.find({})
+		.populate({
+			path: 'categories',
+			match: { name: category },
+		})
+		.populate({
+			path: 'users',
+			select: '-password',
+		})
+		.then(games => {
+			return games.filter(game => {
+				game.categories.length > 0
+			})
+		})
+}
+
 module.exports = mongoose.model('game', gameSchema)

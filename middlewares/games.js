@@ -1,6 +1,12 @@
 const games = require('../models/game')
 
 const findAllGames = async (req, res, next) => {
+	if (req.query["categories.name"]) {
+		req.gamesArray = await games.findGameByCategory(req.query["categories.name"])
+		next()
+		return
+	}
+	
 	req.gamesArray = await games.find({}).populate('categories').populate({ path: 'users', select: "-password"})
 	next()
 }
@@ -46,6 +52,10 @@ const deleteGame = async (req, res, next) => {
 }
 
 const checkEmptyFields = async (req, res, next) => {
+	if (req.isVoteRequest) {
+		next()
+		return
+	}
 	if (
 		!req.body.title ||
 		!req.body.description ||
@@ -64,6 +74,10 @@ const checkEmptyFields = async (req, res, next) => {
 }
 
 const checkIfCategoriesAvaliable = (req, res, next) => {
+	if (req.isVoteRequest) {
+		next()
+		return
+	}
 	if (!req.body.categories || req.body.categories.length === 0) {
 		res.setHeader('Content-Type', 'application/json')
 		res
@@ -108,6 +122,13 @@ const checkIsGameExists = async (req, res, next) => {
 	}
 }
 
+const checkIsVoteRequest = (req, res, next) => {
+	if(Object.keys(req.body).length === 1 && req.body.users) {
+		req.isVoteRequest = true
+	}
+	next()
+}
+
 module.exports = {
 	findAllGames,
 	createGame,
@@ -118,4 +139,5 @@ module.exports = {
 	checkIfCategoriesAvaliable,
 	checkIfUsersAreSafe,
 	checkIsGameExists,
+	checkIsVoteRequest,
 }
