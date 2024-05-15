@@ -10,6 +10,6 @@ usersRouter
   .post('/users', findAllUsers, checkIsUserExists, checkEmptyNameAndEmailAndPassword, checkAuth, createUser, sendUserCreated)
   .put('/users/:id', findAllUsers, checkEmptyNameAndEmail, checkAuth, updateUser, sendUserUpdated)
   .delete('/users/:id', checkAuth, deleteUser, sendUserDeleted)
-  .get('/me', checkAuth, sendMe)
+  .get('/me', sendMe)
 
 module.exports = usersRouter
