@@ -8,7 +8,7 @@ categoriesRouter
 	.get('/categories', findAllCategories, sendAllCategories)
 	.get('/categories/:id', findCategoryById, sendCategoryById)
 	.post('/categories', findAllCategories, checkEmptyName, checkIsCategoryExists, checkAuth, createCategory, sendCategoryCreated)
-	.put('/categories/:id', findCategoryById, checkEmptyName, checkAuth, updateCategory, sendCategoryUpdated)
+	.put('/categories/:id',checkEmptyName, checkAuth, updateCategory, sendCategoryUpdated)
 	.delete('/categories/:id', checkAuth, deleteCategory, sendCategoryDeleted)
 
 module.exports = categoriesRouter

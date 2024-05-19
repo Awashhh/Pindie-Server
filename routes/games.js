@@ -7,7 +7,7 @@ const { checkAuth } = require('../middlewares/auth')
 gamesRouter
   .get('/games', findAllGames, sendAllGames)
   .get('/games/:id', findGameById, sendGameById)
-  .post('/games', findAllGames, checkEmptyFields, checkIsGameExists, checkAuth, createGame, sendGameCreated)
+  .post('/games', findAllGames, checkIsGameExists, checkIfCategoriesAvaliable, checkEmptyFields, checkAuth, createGame, sendGameCreated)
   .put('/games/:id', findGameById, checkIsVoteRequest, checkIfUsersAreSafe, checkIfCategoriesAvaliable, checkEmptyFields, checkAuth, updateGame, sendGameUpdated)
   .delete('/games/:id', checkAuth, deleteGame, sendGameDeleted)
 

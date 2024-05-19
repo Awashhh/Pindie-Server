@@ -5,7 +5,6 @@ const usersRouter = require('./users')
 const authRouter = require('./authRouter')
 
 apiRouter.use('/api', gamesRouter)
-apiRouter.use('/api', gamesRouter)
 apiRouter.use('/api', usersRouter)
 apiRouter.use('/api', categoriesRouter)
 apiRouter.use('/api', authRouter)

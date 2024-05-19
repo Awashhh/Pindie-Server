@@ -37,7 +37,7 @@ const gameSchema = new mongoose.Schema({
 })
 
 gameSchema.statics.findGameByCategory = function (category) {
-	this.find({})
+	return this.find({})
 		.populate({
 			path: 'categories',
 			match: { name: category },
@@ -47,9 +47,9 @@ gameSchema.statics.findGameByCategory = function (category) {
 			select: '-password',
 		})
 		.then(games => {
-			return games.filter(game => {
+			return games.filter(game => 
 				game.categories.length > 0
-			})
+			)
 		})
 }
 

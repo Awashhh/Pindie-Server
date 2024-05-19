@@ -1,2 +1,2 @@
-const jwtPhrase = 'digital-School'
+const jwtPhrase = 'some-secret-key'
 module.exports = jwtPhrase
