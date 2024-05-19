@@ -17,7 +17,14 @@ const { checkAuth } = require('../middlewares/auth')
 usersRouter
   .get('/users', findAllUsers, sendAllUsers)
   .get('/users/:id', findUserById, sendUserById)
-  .post('/users', findAllUsers, checkEmptyNameAndEmailAndPassword, checkAuth, hashPassword, createUser, sendUserCreated)
+  .post('/users',
+	 findAllUsers,
+	 checkEmptyNameAndEmailAndPassword,
+	 checkAuth, 
+	 hashPassword, 
+	 createUser, 
+	 sendUserCreated
+	)
   .put('/users/:id', checkEmptyNameAndEmail, checkAuth, updateUser, sendUserUpdated)
   .delete('/users/:id', checkAuth, deleteUser, sendUserDeleted)
   .get('/me', checkAuth, sendMe)

@@ -18,6 +18,9 @@ const login = (req, res) => {
 					email: user.email, 
 					jwt: token });
 				})
+	.catch((error) => {
+		res.status(400).send({ message: error.message });
+	})
 };
 
 const sendIndex = (req, res) => {
